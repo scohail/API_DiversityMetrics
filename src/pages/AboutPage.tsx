@@ -225,7 +225,15 @@ import { Switch } from "@/components/ui/switch"
                             <Label htmlFor="Regression">Regression</Label>
                         </div>
                         </RadioGroup>
-                        <Switch onCheckedChange={(checked) => setisPairwise(checked)} />
+
+                        <div className="mb-4"></div>
+                        s
+                        <div className="flex items-center space-x-2">
+                            <Switch onCheckedChange={(checked) => setisPairwise(checked)} />
+                            <Label htmlFor="airplane-mode">Pairwise\ NonPairwise</Label>
+
+                        </div>
+                        
                         <div className="mb-4"></div> {/* Add margin-bottom to give more space */}
                         <Label htmlFor="email">Choose the features to compute:</Label>
                         <MultipleSelector
@@ -287,14 +295,14 @@ import { Switch } from "@/components/ui/switch"
                         <div className="mt-4">
                             <h4 className="font-semibold"></h4>
                             <ul className="list-disc ml-5">
-                                <li><strong>Columns :</strong> C1 ,C2</li>
-                                <li><strong>Metric:</strong> Qstatistics</li>
+                                <li><strong>Columns :</strong>{selectedColumns.map(col => col.label).join(', ')} </li>
+                                <li><strong>Metric:</strong> {selectedMetrics.map(metric => metric.label).join(', ')}</li>
                             </ul>
                         </div>
 
                         <div className="mt-4 max-h-full max-w-full">
                             <h4 className="font-semibold">Detailed Breakdown:</h4>
-                            <table className="min-w-full table-auto border-collapse border border-gray-200">
+                            <table className="min-w-full table-auto border-collapse border border-gray-200 mb-20">
                                 <tbody>
                                     {jsonData && Object.entries(jsonData.data).map(([key, value]) => (
                                    
@@ -302,16 +310,13 @@ import { Switch } from "@/components/ui/switch"
                                         <TableCell className="border border-gray-300 p-2">{key}</TableCell>
                                         <TableCell className="border border-gray-300 p-2">{String(value)}</TableCell> {/* Cast value to string */}
                                     </TableRow>
+                                    
                                    
                                     ))}
-                                    <tr className="bg-gray-100">
-                                        <td className="border border-gray-300 p-2">Discount (10%)</td>
-                                        <td className="border border-gray-300 p-2">-$120</td>
-                                    </tr>
-                                    <tr className="font-bold">
-                                        <td className="border border-gray-300 p-2">Final Amount</td>
-                                        <td className="border border-gray-300 p-2">$1080</td>
-                                    </tr>
+                                    <TableRow>
+                                        <TableCell className="border border-gray-300 p-2"></TableCell>
+                                        <TableCell className="border border-gray-300 p-2"></TableCell>
+                                    </TableRow>
                                 </tbody>
                             </table>
                         </div>
